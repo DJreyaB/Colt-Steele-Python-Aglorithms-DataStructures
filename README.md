@@ -9,4 +9,5 @@ If you see an answer that can be simplified, please feel free to comment or cont
 The best way to become the best is to be evaluated by the better.
 
 TOC
+
 1 Problem Solving Patterns
