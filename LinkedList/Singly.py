@@ -1,8 +1,16 @@
-class SinglyLinked():
-    def __init__(self, head, tail, next) -> None:
-        self.head = head
-        self.tail = tail
-        self.next = next
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+
+
+
+class SinglyLinkedList:
+    def __init__(self) -> None:
+        self.head = None
+        self.tail = None
+        self.length = 0
 
 
     def push(self, val):
@@ -17,6 +25,18 @@ class SinglyLinked():
         Return:
             linked list object
         '''
+        new_node = Node(val)
+        if not self.head:
+            self.head = new_node
+            self.tail = self.head
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        
+        self.length += 1
+        return self
+
+
 
 
         pass
@@ -98,3 +118,6 @@ class SinglyLinked():
         
         '''
         pass
+
+singly = SinglyLinkedList()
+singly.push('Hi')
