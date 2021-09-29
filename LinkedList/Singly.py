@@ -36,22 +36,40 @@ class SinglyLinkedList:
         self.length += 1
         return self
 
-
-
-
-        pass
+    # def traverse(){
+    #     current = self.head
+    #     while(current):
+    #         print(current.val)
+    #         current = current.next
+    # }
 
     def pop(self):
         '''
         Description:
+            removes tail and returns the value
 
         Arguments:
-
+            None
         Return:
-
+            tail: Node object
         '''
+        if not self.head:
+            return None
+
+        current = self.head
+        while(current.next):
+            print(current.val)
+            new_tail = current
+            current = current.next
         
-        pass
+        self.tail = new_tail.val
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return current
+
 
     def shift(self):
         '''
@@ -62,7 +80,10 @@ class SinglyLinkedList:
         Return:
         
         '''
-        pass
+        if length == 0:
+            return None 
+
+            
 
     def unshift(self):
         '''
