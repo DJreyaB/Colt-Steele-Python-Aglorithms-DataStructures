@@ -82,10 +82,15 @@ class SinglyLinkedList:
         '''
         if length == 0:
             return None 
+        
+        old_head = self.head
+        self.head = self.head.next
+        self.length -= 1
+        return old_head
 
             
 
-    def unshift(self):
+    def unshift(self, val):
         '''
         Description:
 
@@ -94,7 +99,15 @@ class SinglyLinkedList:
         Return:
         
         '''
-        pass
+        new_head = Node(val)
+        if self.length == 0:
+            self.head = new_head
+            self.tail = new_head
+        else:
+            new_head.next = self.head
+            self.head = new_head
+        self.length += 1
+        return self
 
     def get(self):
         '''
