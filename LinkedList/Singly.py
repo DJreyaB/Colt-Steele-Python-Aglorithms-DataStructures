@@ -57,12 +57,14 @@ class SinglyLinkedList:
             return None
 
         current = self.head
+        new_tail = current
+        
         while(current.next):
-            print(current.val)
+            # print(current.val)
             new_tail = current
             current = current.next
         
-        self.tail = new_tail.val
+        self.tail = new_tail
         self.tail.next = None
         self.length -= 1
         if self.length == 0:
@@ -80,9 +82,10 @@ class SinglyLinkedList:
         Return:
         
         '''
-        if length == 0:
-            return None 
         
+        if self.length == 0:
+            return None
+
         old_head = self.head
         self.head = self.head.next
         self.length -= 1
@@ -109,7 +112,7 @@ class SinglyLinkedList:
         self.length += 1
         return self
 
-    def get(self):
+    def get(self, i):
         '''
         Description:
 
@@ -118,9 +121,19 @@ class SinglyLinkedList:
         Return:
         
         '''
-        pass
+        if i < 0 or i > self.length:
+            return None
+        p = 0
+        current = self.head
 
-    def set(self):
+        while(p < i):
+            current = current.next
+            p += 1
+        
+        return current
+
+
+    def set(self, i, val):
         '''
         Description:
 
@@ -129,9 +142,13 @@ class SinglyLinkedList:
         Return:
         
         '''
-        pass
+        found_node = self.get(i)
+        if found_node:
+            found_node.val = val
+            return True
+        return None
 
-    def insert(self):
+    def insert(self, i, val):
         '''
         Description:
 
@@ -140,7 +157,21 @@ class SinglyLinkedList:
         Return:
         
         '''
-        pass
+        if i < 0 or i > self.length:
+            return None
+        elif i == 0:
+            new_node = self.unshift(val)
+            return new_node == new_node
+        elif i == self.length:
+            new_node = self.push(val)
+            return new_node == new_node
+        else:
+            new_node = Node(val)
+            prev_node = self.get(i - 1)
+            new_next = prev_node.next
+            prev_node.next = new_node
+            new_node.next = new_next
+            return True
 
     def unshift(self):
         '''
