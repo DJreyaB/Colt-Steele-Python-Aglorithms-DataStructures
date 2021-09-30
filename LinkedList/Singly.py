@@ -70,7 +70,7 @@ class SinglyLinkedList:
         if self.length == 0:
             self.head = None
             self.tail = None
-        return current
+        return current.val
 
 
     def shift(self):
@@ -82,8 +82,8 @@ class SinglyLinkedList:
         Return:
         
         '''
-        
-        if self.length == 0:
+
+        if not self.head:
             return None
 
         old_head = self.head
@@ -103,7 +103,7 @@ class SinglyLinkedList:
         
         '''
         new_head = Node(val)
-        if self.length == 0:
+        if not self.head:
             self.head = new_head
             self.tail = new_head
         else:
@@ -148,7 +148,7 @@ class SinglyLinkedList:
             return True
         return None
 
-    def insert(self, i, val):
+    def insert(self, index, val):
         '''
         Description:
 
@@ -157,12 +157,12 @@ class SinglyLinkedList:
         Return:
         
         '''
-        if i < 0 or i > self.length:
+        if index < 0 or index > self.length:
             return None
-        elif i == 0:
+        elif index == 0:
             new_node = self.unshift(val)
             return new_node == new_node
-        elif i == self.length:
+        elif index == self.length:
             new_node = self.push(val)
             return new_node == new_node
         else:
@@ -173,16 +173,36 @@ class SinglyLinkedList:
             new_node.next = new_next
             return True
 
-    def unshift(self):
-        '''
-        Description:
-
-        Arguments:
-
-        Return:
+    def remove(self, index):
+        if index < 0 or index > self.length:
+            return None
         
-        '''
-        pass
+        if index == self.length - 1:
+            return self.pop(index)
+        
+        if index == 0:
+            return self.shift(index)
+        removed = self.get(index)
+        prev_node = self.get(index - 1)
+        prev_node.next = removed.next
+        self.length -= 1
+
+        return removed
+
+    def reverse(self):
+        current = self.head
+        self.head = self.tail
+        self.tail = current
+        prev = None
+        next = None
+
+        while(current.next):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+            
+        return self
 
 singly = SinglyLinkedList()
 singly.push('Hi')
